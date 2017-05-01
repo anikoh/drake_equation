@@ -17,9 +17,12 @@ export default class EquationVal extends React.Component {
 
   render(){
   //  const strength = passwordMeter(this.state.password)
-    return (<div>
-    <input type="password"
-    onChange={this.handleChange}/>
+  return (
+    <div>
+      <input type="number"
+      onChange={this.props.drakeTest}
+      value=  {this.props.valText} />
+
     </div>)
   }
 }

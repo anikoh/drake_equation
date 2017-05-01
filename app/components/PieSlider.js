@@ -10,10 +10,8 @@ class PieSlider extends React.Component {
 
   constructor(props){
     super(props)
-    this.handleChange = this.handleChange.bind(this) // bind the context because otherwise the context would change for the handleChange function
+  //  this.handleChange = this.handleChange.bind(this) // bind the context because otherwise the context would change for the handleChange function
     this.drawData = this.drawData.bind(this)
-    this.state = { value: this.props.startValue }
-
     //setTimeout(() => this.drawData(), 300)
     // this.drawData()
   }
@@ -22,17 +20,12 @@ class PieSlider extends React.Component {
     this.drawData()
   }
 
-  handleChange(event){
-    this.setState({value: event.target.value })
-    this.drawData()
-  }
-
   drawData() {
-     d3.select("#" + this.props.divName).selectAll("svg").remove();
+    d3.select("#" + this.props.divName).selectAll("svg").remove();
 
     var data = [
-      { label: this.state.value + ' %', value: this.state.value },
-      { label: '', value: 100-this.state.value }
+      { label: this.props.startValue + ' %', value: this.props.startValue },
+      { label: '', value: 100-this.props.startValue }
     ],
 
     pie = d3.select("#" + this.props.divName)
@@ -57,12 +50,12 @@ class PieSlider extends React.Component {
   }
 
   render(){
-
+    this.drawData();
     return (
       <div>
         <input type="range"
-        onChange = {this.handleChange}
-        value = {this.state.value}
+        onChange={this.props.fn}
+        value={this.props.startValue}
         min={this.props.min}
         max={this.props.max} />
         <div id={this.props.divName}></div>

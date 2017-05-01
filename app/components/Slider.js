@@ -1,62 +1,34 @@
 //const React = require('react')
 
-import React from 'react';
-import * as d3 from 'd3';
-window.d3 = d3;
-import pie from './lib/pie';
-
+import React from 'react'
 
 class Slider extends React.Component {
 
   constructor(props){
     super(props)
-    this.handleChange = this.handleChange.bind(this) // bind the context because otherwise the context would change for the handleChange function
-    this.drawData = this.drawData.bind(this)
-    this.state = { value: this.props.startValue }
+//    this.handleChange = this.handleChange.bind(this) // bind the context because otherwise the context would change for the handleChange function
+    this.state = { value: this.props.startValue}
   }
 
-  handleChange(event){
-    this.setState({value: event.target.value })
-    this.drawData()
-  }
+  // handleChange(event){
+  //   this.setState({value: event.target.value })
+  // }
 
-  drawData() {
-    var data = [
-      { label: '', value: this.state.value },
-      { label: '', value: (100-this.state.value) },
-    ]
-
-    var pie = d3.select('#pie')
-      .append('svg')
-      .attr('width', 450)
-      .attr('height', 300)
-      .chart('Pie', {
-        width: 450,
-        height: 300,
-        radius: 100,
-        donutHole: {
-          radius: 0,
-          color: 'white'
-        },
-        labelTemplate: '{label}: {value}',
-        legend: {
-          title: 'Popular Pets'
-        }
-      });
-
-    pie.draw(data);
-  }
 
   render(){
     return (
       <div>
-        <input type="range"
-        onChange = {this.handleChange}
-        value = {this.state.value}
-        min={this.props.min}
-        max={this.props.max}/>
-
-        <div id="pie"></div>
+      <input type="range"
+      onChange = {this.props.fn}
+      value = {this.props.startValue}
+      min={this.props.min}
+      max={this.props.max}
+      step={this.props.step}/>
+      <input type="number"
+      onChange = {this.handleChange}
+      value = {this.props.fn}
+      min={this.props.min}
+      max={this.props.max}/>
       </div>
     )
   }
