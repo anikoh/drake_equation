@@ -7,7 +7,7 @@ class Slider extends React.Component {
   constructor(props){
     super(props)
 //    this.handleChange = this.handleChange.bind(this) // bind the context because otherwise the context would change for the handleChange function
-    this.state = { value: this.props.startValue}
+//    this.state = { value: this.props.startValue}
   }
 
   // handleChange(event){
@@ -25,8 +25,8 @@ class Slider extends React.Component {
       max={this.props.max}
       step={this.props.step}/>
       <input type="number"
-      onChange = {this.handleChange}
-      value = {this.props.fn}
+      onChange = {this.props.fn}
+      value = {this.props.startValue}
       min={this.props.min}
       max={this.props.max}/>
       </div>
